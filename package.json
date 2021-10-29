@@ -1,0 +1,27 @@
+{
+  "name": "tech-blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/axumdzn/tech-blog.git"
+  },
+  "author": "Ken Felix",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/axumdzn/tech-blog/issues"
+  },
+  "homepage": "https://github.com/axumdzn/tech-blog#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mysql2": "^2.3.2",
+    "sequelize": "^6.8.0"
+  }
+}
