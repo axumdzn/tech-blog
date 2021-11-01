@@ -32,3 +32,22 @@ router.post('/:id',withAuth, async (req,res)=> {
         res.status(500).json(err);
     }
 });
+
+router.delete('/:id',withAuth, async (req,res) => {
+    try {
+        const delData = await Blog.destroy({
+            where: {
+                id: req.params.id,
+                user_id: req.session.user_id,
+            },
+        });
+        if(!delData) {
+            res.status(404).json({message: 'Project not found with this id'})
+        };
+        res.status(200).json(delData);
+    } catch (err){
+        res.status(500).json(err);
+    }
+});
+
+module.exports = router;
