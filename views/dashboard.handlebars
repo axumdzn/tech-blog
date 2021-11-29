@@ -2,15 +2,14 @@
     <h3>Welcome back, {{username}}!</h3>
     <div class="row">
         <div class="col">
-        {{#each Posts}}
+        {{#each blogs}}
             <div class="card small">
                 <div class="card-content black-text">
                     <span class="card-title">{{title}}</span>
-                    <p>{{description}}</p>
+                    <p>{{content}}</p>
                 </div>
                 <div class="card-action" style="display: flex; justify-content:space-between">
-                    <button class="btn editPost">Edit</button>
-                    <button class="btn deletePost">Delete</button>                    
+                    <button class="btn deletePost" data-blogid={{id}}>Delete</button>                    
                 </div>
             </div>
         {{/each}}
@@ -18,6 +17,6 @@
     </div>
 </div>
 
-<a href="/newpost" class="btn" style="margin-top: 10px;">New Post</a>
+<a href="/newblog" class="btn" style="margin-top: 10px;">New Blog</a>
 
 <script src="/js/dashboard.js"></script>

@@ -3,12 +3,12 @@ const id = document.querySelector("#postId").textContent;
 
 newComment.addEventListener("submit",(e)=>{
     e.preventDefault();
-    const postComment={
-        comment:document.querySelector("#comment").value,
+    const blogComment={
+        content:document.querySelector("#comment").value,
     }
     fetch('/api/comments/'+id,{
         method:"POST",
-        body:JSON.stringify(postComment),
+        body:JSON.stringify(blogComment),
         headers:{
             "Content-Type":"application/json"
         }

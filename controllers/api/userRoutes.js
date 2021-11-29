@@ -1,6 +1,20 @@
 const router = require('express').Router();
-const { runInNewContext } = require('vm');
-const {User} = require('../../models');
+const {User, Blog} = require('../../models');
+
+router.get('/', (req,res) => {
+    User.findAll({
+        include:[Blog]
+    }).then(dbUsers=>{
+        if(dbUsers.length){
+            res.json(dbUsers)
+        } else {
+            res.status(404).json({message:"No users found!"})
+        }
+    }).catch(err=>{
+        console.log(err);
+        res.status(500).json({message:"an error occured",err:err})
+    })
+});
 
 router.post('/', async (req,res) => {
     try {
@@ -17,18 +31,18 @@ router.post('/', async (req,res) => {
     }
 });
 
-router.post('/login', (req, res) => {
+router.post('/login', async (req, res) => {
     try{
-        const userData = await User.findOne({where: {email: req.body.email}});
+        const userData = await User.findOne({where: {username: req.body.username}});
 
         if(!userData) {
-            res.status(400).json({message: 'Incorrect email or password, please try again'})
+            res.status(400).json({message: 'Incorrect username or password, please try again'})
             return;
         }
         const validPass = await userData.checkPassword(req.body.password);
         
         if(!validPass) {
-            res.status(400).json({message:'Incorrect email or password, please try again'});
+            res.status(400).json({message:'Incorrect usename or password, please try again'});
             return;
         }
         req.session.save(()=> {

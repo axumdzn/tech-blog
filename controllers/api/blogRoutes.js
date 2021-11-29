@@ -1,7 +1,18 @@
 const router = require('express').Router();
-const { Blog, User } = require('../models');
-const withAuth = require('../utils/auth');
+const { Blog, User } = require('../../models');
+const withAuth = require('../../utils/auth');
 
+router.get('/:id', (req,res) => {
+    Blog.findOne({
+        where: {id: req.params.id },
+        include: [User, Comment]
+    }).then(blogdata => {
+        res.json(blogdata)
+    }).catch(err => {
+        console.log(err);
+        res.status(500).json('internal server error')
+    })
+});
 //create post
 router.post('/',withAuth, async (req,res) => {
     try{
