@@ -1,0 +1,16 @@
+<div class="row">
+    <div class="col">
+    {{#each posts}}
+      <div class="card small">
+        <div class="card-content black-text">
+          <a href="/post/{{id}}"><span class="card-title">{{title}}</span></a>
+          <p>{{description}}</p>
+        </div>
+        <div class="card-action">
+          <p>{{User.username}}</p>
+          <p>{{createdAt}}</p>
+        </div>
+      </div>
+    {{/each}}
+    </div>
+</div>
